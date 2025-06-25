@@ -1,63 +1,121 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19729488&assignment_repo_type=AssignmentRepo)
-# Express.js RESTful API Assignment
+## Week 2 Assignment
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+##  Overview
+This project is a RESTful API built with Express.js to manage a list of products. It supports CRUD operations, filtering, pagination, search, and statistics, along with custom middleware for logging, authentication, validation, and error handling.
 
-## Assignment Overview
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
 
-## Getting Started
+##  Project Structure
+```
+Products.js
+server.js
+routes 
+  └── productRoutes.js
+middleware/
+    ├── auth.js
+    ├── errorHandler.js
+    ├── logger.js  
+.env.example
+README.md
+```
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
-   ```
-   npm install
-   ```
-4. Run the server:
-   ```
-   npm start
-   ```
 
-## Files Included
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+##  Setup Instructions
 
-## Requirements
+### Prerequisites
+- Node.js v18 or higher
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+### Installation
 
-## API Endpoints
+git clone https://github.com/PLP-MERN-Stack-Development/week-2-express-js-assignment-ThendoNetshandama-1/blob/main/server.js
+npm install express
+npm install mongoose
 
-The API will have the following endpoints:
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+### Environment Variables
+Create a `.env` file based on `.env.example`:
+env
+PORT=3000
+API_KEY=12345
 
-## Submission
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### Running the Server
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+node server.js
 
-## Resources
+The server will run on `http://localhost:3000`
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+
+
+##  Using the API in Postman
+For every request:
+- Add a header: `Authorization: 12345`
+
+---
+
+##  API Endpoints
+
+
+### Products
+- `GET /Products` → List all products
+- Optional query parameters:
+- `category` - filter by category
+- `name` - search by name (partial)
+- `page` and `limit` - for pagination
+
+- `GET /Products/:id` → Get product by ID
+- `POST /Products` → Create new product
+- `PUT /Products/:id` → Update product by ID
+- `DELETE /Products/:id` → Delete product by ID
+
+### Stats
+- `GET /Products/stats` → Get product count by category
+
+---
+
+##  Example Requests
+
+### Create Product (POST)
+```
+POST /Products
+Body:
+{
+  "name": "cayene gts",
+  "description": "The best performing SUV",
+  "price": 4000000,
+  "category": "car",
+  "inStock": true
+}
+```
+
+### Filter by Category (GET)
+```
+GET /Products?category=car
+```
+
+### Paginate (GET)
+```
+GET /Products?page=1&limit=2
+```
+
+### Product Stats (GET)
+```
+GET /Products/stats
+```
+
+---
+
+##  Submission Checklist
+-  All project files included
+-  Middleware: logger, auth, validation, errorHandler
+-  API routes implemented
+-  `.env.example` provided
+-  `README.md` created with instructions & documentation
+
+---
+
+
+## Sample test
+
+![Image](./image.png)
